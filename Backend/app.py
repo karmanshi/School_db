@@ -43,7 +43,7 @@ def add_school():
     # Save uploaded photo
     if 'photo' in request.files:
         photo = request.files['photo']
-        photo_path = f'photos/{photo.filename}'
+        photo_path = f'static/photos/{photo.filename}'
         photo.save(photo_path)
     else:
         photo_path = None
@@ -84,11 +84,6 @@ def get_schools():
     return jsonify({'schools': schools_list})
 
 
-@app.route("/hello", methods=['GET'])
-def printHello():
-    a="hello"
-    print(a)
-    return jsonify({'message':a})
 
 if __name__ == '__main__':
 

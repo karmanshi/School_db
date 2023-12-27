@@ -1,28 +1,49 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import './SchoolRegistrationForm.css';
-const ShowSchool = ({ formData }) => {
+import axios from 'axios';
+
+const ShowSchool = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('http://localhost:5000/get_schools');
+            setData(response.data.schools);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+    }, []); // Empty dependency array ensures useEffect runs once after the initial render
+    
+    console.log("Data is",data)
+
+
     return (
         <div className="registration-summary">
             <h2>Registration Summary</h2>
-            <p>
-                <strong>School's Name:</strong> {formData.name}
-            </p>
-            <p>
-                <strong>Address:</strong> {formData.address}
-            </p>
-            <p>
-                <strong>Phone Number:</strong> {formData.phoneNumber}
-            </p>
-            <p>
-                <strong>Email:</strong> {formData.email}
-            </p>
-            <p>
-                <strong>City:</strong> {formData.city}
-            </p>
-            
-            <div className="card">
-                <strong>Image:</strong><img src={URL.createObjectURL(formData.image[0])} alt='image' /> 
-                    
+            <div className="registration-summary-body">
+
+            {
+                data.map((elements, index)=>{
+                    let photo_path = "http://localhost:5000/"+elements.photo
+                    return <>
+                        <div class="school_card">
+                            {/* <img src={URL.createObjectURL(data[0].image[0])} alt="Avatar" style={{width:"100%"}} /> */}
+                            <img src={photo_path} alt="Avatar" style={{width:"100%"}} />
+                            <div class="school_card_container">
+                                <h4><b>{elements.name}</b></h4> 
+                                <ul>
+                                    <li>{elements.city}</li> 
+                                    <li>{elements.address}</li> 
+                                </ul>
+                            </div>
+                        </div>
+                    </>
+                })
+            }
             </div>
         </div>
     );
