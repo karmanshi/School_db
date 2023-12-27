@@ -10,12 +10,12 @@ To run this project follow this guide step by step:
         3. Create a virtual environment by using `python -m venv env` or `python3 -m venv env`
         4. Activate the virtual environment by using `env/Scripts/activate`(for windows) and `source env/bin/windows`(for linux or ubuntu)
         5. Install the requirements from requirements.txt by using the following command: `pip install -r requirements.txt`
-        6. Create a file named `.env` and configure the following variables and save it:
+        6. Create a file named `.env` and configure the following variables and save it:\
             dbms_provider="database name ie. mysql, postgresql, etc"\
             db_user="database username"\
             db_password="database password"\
             db_host="database host address"\
-            db_name="database name"\
+            db_name="database name"
         8. Now migrate the database using following commands:
             - flask db init
             - flask db migrate -m "Your migration message"
