@@ -6,12 +6,12 @@ const Layout = () => {
       <nav className="nav">
         <ul>
             <li>
-                <Link className="active" to="/">School DB</Link>
+                <Link className="logo"  to="/">School DB</Link>
             </li>
-            <li>
+            <li >
                 <Link to="/">Add School</Link>
             </li>
-            <li>
+            <li >
                 <Link to="/show-school">Schools</Link>
             </li>
         </ul>
