@@ -32,7 +32,7 @@ const SchoolRegistrationForm = () => {
             'Content-Type': 'multipart/form-data',
           },
         });
-        <h1>alert("Data Added Successfully!")</h1>
+        alert("Data Added Successfully!")
         console.log('Upload successful:', response.data);
       } catch (error) {
         alert("An Error Occurred!")
